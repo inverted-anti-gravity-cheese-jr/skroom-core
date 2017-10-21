@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { ApiService } from "./app.api.service"
-import { IBook } from "../model/book"
+import { IBook } from "../../model/book"
 import 'rxjs/add/operator/map';
 
 
