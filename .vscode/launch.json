@@ -6,10 +6,10 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Debug (Launch)",
-            "request": "launch",
-            "mainClass": "pl.skroom.Application",
-            "args": ""
+            "name": "Debug (Attach)",
+            "request": "attach",
+            "hostName": "localhost",
+            "port": 5005
         }
     ]
 }

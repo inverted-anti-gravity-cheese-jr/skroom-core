@@ -1,0 +1,9 @@
+{
+    "name": "skroom",
+    "version": "0.0.1",
+    "license": "MIT",
+    "scripts": {
+      "build": "npm run-script build --prefix src/main/ts"
+    }
+  }
+  
