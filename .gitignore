@@ -1,10 +1,7 @@
+.settings/
+.gradle/
 .project
 .classpath
-gradlew
-gradlew.bat
-bin/
-build/
+.vscode/
 gradle/
-.gradle/
-.settings/
-node_modules/
+build/

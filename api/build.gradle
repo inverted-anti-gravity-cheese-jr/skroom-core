@@ -1,0 +1,38 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'application'
+
+mainClassName = 'org.skroom.Application'
+
+// tag::repositories[]
+repositories { 
+    mavenCentral() 
+}
+// end::repositories[]
+
+// tag::jar[]
+jar {
+    baseName = 'gs-gradle'
+    version =  '0.1.0'
+}
+// end::jar[]
+
+// tag::dependencies[]
+sourceCompatibility = 1.10
+targetCompatibility = 1.10
+
+dependencies {
+    compile group: 'ro.pippo', name: 'pippo-controller', version: '1.10.0'
+    compile group: 'ro.pippo', name: 'pippo-tomcat', version: '1.10.0'
+    compile group: 'ro.pippo', name: 'pippo-jackson', version: '1.10.0'
+
+    compile group: 'com.google.inject', name: 'guice', version: '4.2.0'
+    compile group: 'com.google.inject.extensions', name: 'guice-assistedinject', version: '4.2.0'
+
+
+    testCompile "junit:junit:4.12"
+}
+// end::dependencies[]
+
+// tag::wrapper[]
+// end::wrapper[]

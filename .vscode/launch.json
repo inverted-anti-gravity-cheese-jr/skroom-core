@@ -6,10 +6,14 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Debug (Attach)",
-            "request": "attach",
-            "hostName": "localhost",
-            "port": 5005
+            "name": "Debug (Launch)-Application<api>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "org.skroom.Application",
+            "args": "",
+            "projectName": "api"
         }
     ]
 }

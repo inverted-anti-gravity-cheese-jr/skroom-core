@@ -1,34 +1,15 @@
-buildscript {
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+allprojects {
     repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.8.RELEASE")
+        mavenCentral() 
     }
 }
 
-apply plugin: 'java-library'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'application'
-
-mainClassName = "pl.skroom.Application"
-
-repositories {
-	mavenCentral()
+subprojects {
+    version = '1.0'
 }
 
-dependencies {
-	compileOnly 'org.projectlombok:lombok:1.16.18'
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '1.5.8.RELEASE'
-}
 
-dependencies {
-    testImplementation 'junit:junit:4.12'
-}
-
-/* node build */
-task compileAngular(type: Exec) {
-    commandLine "npm", "run-script", "build"
-}
-
-compileJava.dependsOn compileAngular
+task runApi(dependsOn: ":api:run") {}
