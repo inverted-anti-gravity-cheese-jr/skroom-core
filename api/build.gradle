@@ -4,8 +4,15 @@ apply plugin: 'application'
 
 mainClassName = 'org.skroom.Application'
 
+/*
+resources {
+      srcDirs = ['src/main/resources', 'src/main/java']
+}
+*/
+
 // tag::repositories[]
 repositories { 
+    jcenter()
     mavenCentral() 
 }
 // end::repositories[]
@@ -18,8 +25,8 @@ jar {
 // end::jar[]
 
 // tag::dependencies[]
-sourceCompatibility = 1.10
-targetCompatibility = 1.10
+sourceCompatibility = 1.11
+targetCompatibility = 1.11
 
 dependencies {
     compile group: 'ro.pippo', name: 'pippo-controller', version: '1.10.0'
@@ -27,8 +34,8 @@ dependencies {
     compile group: 'ro.pippo', name: 'pippo-jackson', version: '1.10.0'
 
     compile group: 'com.google.inject', name: 'guice', version: '4.2.0'
-    compile group: 'com.google.inject.extensions', name: 'guice-assistedinject', version: '4.2.0'
 
+    compile group: 'com.nimbusds', name: 'nimbus-jose-jwt', version: '6.0.2'
 
     testCompile "junit:junit:4.12"
 }

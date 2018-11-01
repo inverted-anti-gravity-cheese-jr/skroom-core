@@ -1,0 +1,16 @@
+//import org.gradle.internal.os.OperatingSystem;
+
+task startNginx() {
+    /*
+    def url = 'http://nginx.org/download/nginx-1.14.0.zip'
+    if (OperatingSystem.current().isMacOsX() || OperatingSystem.current().isLinux()) {
+        url = 'http://nginx.org/download/nginx-1.14.0.tar.gz'
+    }
+
+    def f = new File('./nginx')
+    if (!f.exists()) {
+        def zip = new File("./nginx.zip")
+        new URL(url).withInputStream{ i -> zip.withOutputStream{ it << i }}
+    }
+    */
+}

@@ -6,3 +6,5 @@
 gradle/
 build/
 tomcat_home/
+node_modules/
+gradle.properties

@@ -13,3 +13,5 @@ subprojects {
 
 
 task runApi(dependsOn: ":api:run") {}
+
+task runFe(dependsOn: ":ui:run") {}

@@ -23,12 +23,15 @@ public class Application extends ControllerApplication {
         ANY("/.*", context -> {
             System.out.println("Hello filter");
             context.next();
+            
         });
     }
     
     public static void main(String[] args) {
         var app = new Application();
-        app.injector = Guice.createInjector(new ControllersModule());
+        app.injector = Guice.createInjector(
+            new MainModule(),
+            new ControllersModule());
 
         var pippo = new Pippo(app);
         pippo.start();
