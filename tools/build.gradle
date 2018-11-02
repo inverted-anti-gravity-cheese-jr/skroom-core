@@ -1,16 +1,71 @@
-//import org.gradle.internal.os.OperatingSystem;
+import org.gradle.internal.os.OperatingSystem;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
-task startNginx() {
-    /*
-    def url = 'http://nginx.org/download/nginx-1.14.0.zip'
+def buildPath = "${project.projectDir}/build"
+def nginxPath = "${project.projectDir}/build/nginx"
+def nginxZipExt = "zip"
+
+def getNginxDownloadUrl() {
+	def url = "http://nginx.org/download/nginx-1.14.0.zip"
     if (OperatingSystem.current().isMacOsX() || OperatingSystem.current().isLinux()) {
-        url = 'http://nginx.org/download/nginx-1.14.0.tar.gz'
+        url = "http://nginx.org/download/nginx-1.14.0.tar.gz"
+        println("Using Unix Nginx distribution (${url})")
+    } else {
+    	println("Using Windows Nginx distribution (${url})")
     }
+    return url
+}
 
-    def f = new File('./nginx')
-    if (!f.exists()) {
-        def zip = new File("./nginx.zip")
-        new URL(url).withInputStream{ i -> zip.withOutputStream{ it << i }}
+task createBuildDir() {
+	def buildDir = Paths.get(buildPath)
+    println(buildDir)
+    if (!Files.exists(buildDir)) {
+    	println("Creating build directory...")
+    	Files.createDirectory(buildDir)
     }
-    */
+}
+
+
+task fetchArchive(dependsOn: "createBuildDir") {
+    def nginxDir = Paths.get(nginxPath)
+    if (!Files.exists(nginxDir)) {
+    	println("Nginx is missing, downloading...")
+    	def nginxUrl = getNginxDownloadUrl()
+    	if (nginxUrl.endsWith("tar.gz")) {
+    		nginxZipExt = "tar.gz"
+    	}
+        def zip = new File("${nginxPath}.${nginxZipExt}")
+        new URL(nginxUrl).withInputStream{ i -> zip.withOutputStream{ it << i }}
+        println("Nginx download complete")
+    } else {
+    	println("Nginx already downloaded, skipping...")
+    }
+}
+
+task unpackNginx(type: Copy, dependsOn: "fetchArchive") {
+	def nginxDir = Paths.get(nginxPath)
+    
+    if (!Files.exists(nginxDir)) {
+    	println("Unpacking Nginx...")
+    	def zipFilePath = Paths.get("${nginxPath}.${nginxZipExt}")
+	 	
+	 	if ("zip".equals(nginxZipExt)) {
+	    	from zipTree(zipFilePath.toFile()) into nginxDir
+	    } else {
+	    	from tarTree(zipFilePath.toFile()) into nginxDir
+	    }
+    }
+}
+
+task prepareNginx(dependsOn: "unpackNginx") {
+	//println("Deleting Nginx archive...")
+	//Files.delete(Paths.get("${nginxPath}.${nginxZipExt}"))
+	println("Copying configuration...")
+	def confSource = Paths.get("${project.projectDir}/dev-nginx/nginx.conf")
+	def confTarget = Paths.get(nginxPath + "/nginx-1.14.0/conf/nginx.conf")
+	Files.copy(confSource, confTarget, StandardCopyOption.REPLACE_EXISTING)
+	println("Done")
+	// TODO: launch
 }

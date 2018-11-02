@@ -2,3 +2,4 @@ rootProject.name = 'skroom'
 
 include 'api'
 include 'ui'
+include 'tools'
