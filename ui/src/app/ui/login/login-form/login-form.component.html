@@ -1,0 +1,22 @@
+<div class="login-form">
+  <img src="assets/logo-panel.png" alt="Skroom logo">
+  <div class="container">
+    <form>
+      <div class="row">
+        <label for="username">User Name or Email</label>
+        <input #username type="text" name="username">
+
+        <label for="password">Password</label>
+        <input #password type="password" name="password">
+      </div>
+      <div class="row">
+        <div class="one-half column">
+          <button type="button" class="button login" (click)="login(username.value, password.value)">Login</button>
+        </div>
+        <div class="one-half column">
+          <a routerLink="/register"><button type="button" class="button register" >Register</button></a>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,25 +1,16 @@
 package org.skroom.auth;
 
-import com.google.inject.Inject;
-import com.google.inject.name.Named;
+import org.springframework.beans.factory.annotation.Value;
 
 /**
  * TokenGeneratorService
  */
 public class TokenGeneratorService {
 
-    private final int tokenKeyBits;
+    @Value("org.skroom.jwt.key.bits")
+    private int tokenKeyBits;
 
-    private final String tokenKeyId;
-
-    @Inject
-    public TokenGeneratorService(@Named("org.skroom.jwt.key.id") String tokenKeyId, @Named("org.skroom.jwt.key.bits") int tokenKeyBits) {
-        this.tokenKeyBits = tokenKeyBits;
-        this.tokenKeyId = tokenKeyId;
-
-        System.out.println(tokenKeyBits);
-        System.out.println(tokenKeyId);
-    }
-
+    @Value("org.skroom.jwt.key.id")
+    private String tokenKeyId;
     
 }

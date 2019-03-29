@@ -11,9 +11,11 @@ resources {
 */
 
 // tag::repositories[]
-repositories { 
-    jcenter()
-    mavenCentral() 
+buildscript {
+	repositories { 
+		jcenter()
+		mavenCentral() 
+	}
 }
 // end::repositories[]
 
@@ -29,13 +31,13 @@ sourceCompatibility = 1.11
 targetCompatibility = 1.11
 
 dependencies {
-    compile group: 'ro.pippo', name: 'pippo-controller', version: '1.10.0'
-    compile group: 'ro.pippo', name: 'pippo-tomcat', version: '1.10.0'
-    compile group: 'ro.pippo', name: 'pippo-jackson', version: '1.10.0'
-
-    compile group: 'com.google.inject', name: 'guice', version: '4.2.0'
-
-    compile group: 'com.nimbusds', name: 'nimbus-jose-jwt', version: '6.0.2'
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.1.3.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-devtools', version: '2.1.3.RELEASE'
+    
+	compile group: 'org.springframework', name: 'spring-web', version: '5.1.5.RELEASE'
+	compile group: 'org.springframework', name: 'spring-core', version: '5.1.5.RELEASE'
+	compile group: 'org.springframework.security', name: 'spring-security-core', version: '5.1.4.RELEASE'
+	compile group: 'org.springframework.security', name: 'spring-security-web', version: '5.1.4.RELEASE'
 
     testCompile "junit:junit:4.12"
 }

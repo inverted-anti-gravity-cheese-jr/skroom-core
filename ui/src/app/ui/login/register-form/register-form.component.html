@@ -1,0 +1,138 @@
+<div class="login-form">
+  <div class="container">
+    <form>
+      <div class="row">
+        <div class="one-half column">
+          <label for="username">User Name or Email</label>
+          <input
+            #username="ngModel" 
+            ngModel 
+            required 
+            minlength="10" 
+            type="text" 
+            name="username" 
+            tabindex="1"
+            [ngClass]="{ 'error':  username.invalid && (username.dirty || username.touched) }">
+
+          <div class="form-error" *ngIf="username.invalid && (username.dirty || username.touched)">
+            <div *ngIf="username.errors.required">
+              User name is required.
+            </div>
+            <div *ngIf="username.errors.minlength">
+              User name too short (min {{username.errors.minlength.requiredLength}} chars long).
+            </div>
+          </div>
+
+        </div>
+        <div class="one-half column">
+          <label for="email">E-mail address</label>
+          <input
+            #email="ngModel" 
+            ngModel 
+            email 
+            required 
+            type="email" 
+            name="email" 
+            tabindex="4"
+            [ngClass]="{ 'error':  email.invalid && (email.dirty || email.touched) }">
+
+          <div class="form-error" *ngIf="email.invalid && (email.dirty || email.touched)">
+            <div *ngIf="email.errors.required">
+              Email is required.
+            </div>
+            <div *ngIf="email.errors.email">
+              Not a valid email format.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="one-half column">
+          <label for="password">Password</label>
+          <input
+            #password="ngModel"
+            ngModel
+            required
+            minlength="8" 
+            type="password" 
+            name="password" 
+            tabindex="2"
+            [ngClass]="{ 'error':  password.invalid && (password.dirty || password.touched) }">
+
+          <div class="form-error" *ngIf="password.invalid && (password.dirty || password.touched)">
+            <div *ngIf="password.errors.required">
+              Password must not be empty.
+            </div>
+            <div *ngIf="password.errors.minlength">
+              Password too short (min {{password.errors.minlength.requiredLength}} chars long).
+            </div>
+          </div>
+        </div>
+        <div class="one-half column">
+          <label for="secQuestion">Security question</label>
+          <input
+            #secQuestion="ngModel"
+            ngModel
+            required
+            type="text"
+            name="secQuestion"
+            tabindex="5"
+            [ngClass]="{ 'error':  secQuestion.invalid && (secQuestion.dirty || secQuestion.touched) }">
+          <div class="form-error" *ngIf="secQuestion.invalid && (secQuestion.dirty || secQuestion.touched)">
+            <div *ngIf="secQuestion.errors.required">
+              This field is required.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="one-half column">
+          <label for="confirmPassword">Confirm password</label>
+          <input
+            #confirmPassword="ngModel"
+            ngModel
+            type="password"
+            name="confirmPassword"
+            tabindex="3"
+            [ngClass]="{ 'error':  (password.value != confirmPassword.value) && (confirmPassword.dirty || confirmPassword.touched) }">
+
+          <div class="form-error" *ngIf="(password.value != confirmPassword.value) && (confirmPassword.dirty || confirmPassword.touched)">
+              Passwords do not match.
+          </div>
+        </div>
+        <div class="one-half column">
+          <label for="secAnswer">Security question answer</label>
+          <input
+            #secAnswer="ngModel"
+            ngModel
+            required
+            type="text"
+            name="secAnswer"
+            tabindex="6"
+            [ngClass]="{ 'error':  secAnswer.invalid && (secAnswer.dirty || secAnswer.touched) }">
+          
+          <div class="form-error" *ngIf="secAnswer.invalid && (secAnswer.dirty || secAnswer.touched)">
+            <div *ngIf="secAnswer.errors.required">
+              This field is required.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="five columns">
+          <a routerLink="/login"><button type="button" class="button" tabindex="8">Cancel</button></a>
+        </div>
+        <div class="two columns">&nbsp;</div>
+        <div class="five columns">
+          <button
+            type="button"
+            class="button register"
+            tabindex="7"
+            (click)="register(username.value, email.value, password.value, secQuestion.value, secAnswer.value)"
+            [disabled]="!(username.valid && email.valid && password.valid && secQuestion.valid && secAnswer.valid && (password.value === confirmPassword.value))">
+            Register</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

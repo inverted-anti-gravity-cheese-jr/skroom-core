@@ -1,0 +1,44 @@
+@import '../../../themes.scss';
+
+.login-form {
+    width: 500px;
+    height: 300px;
+    background-color: $accent-body;
+    text-align: center;
+    margin: 200px auto;
+    padding: 15px;
+    box-shadow: 0 0 20px black;
+    color: $accent-body-text;
+}
+
+.login-form img {
+    display: inline-block;
+}
+
+.row {
+    text-align: left;
+}
+
+label {
+    font-size: 12px;
+    font-weight: normal;
+}
+
+input {
+    width: 100%;
+    color: black;
+}
+
+.button {
+    width: 100%;
+    color: $accent-body;
+}
+
+.button.login {
+    background-color: $call-to-action;
+}
+
+.button.register {
+    background-color: $accent;
+    color: $accent-body-heavy;
+}
