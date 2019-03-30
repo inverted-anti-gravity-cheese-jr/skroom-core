@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { PanelComponent } from './ui/base/panel/panel.component';
 import { LoginFormComponent } from './ui/login/login-form/login-form.component';
 import { RegisterFormComponent } from './ui/login/register-form/register-form.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { RegisterFormComponent } from './ui/login/register-form/register-form.co
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     FormsModule
   ],

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from 'src/app/service/authentication.service';
 
 @Component({
   selector: 'app-login-form',
@@ -7,14 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginFormComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
   }
 
   login(userName: string, password: string) {
-    console.log("Logged in: " + userName);
-    document.cookie = "jsessionid: " + userName + "; expires=Thu, 12 Dec 2019 23:59:59 UTC; path=/";
+    this.authenticationService.login(userName, password).subscribe((data) => {
+      console.log("Logged as: " + data.userName);
+      console.log(data);
+    });
   }
 
 }
