@@ -46,6 +46,7 @@ public class AuthenticationController {
                 .filter(u -> user.userName.equals(u.getKey().getUserName()))
                 .findAny();
         if (userPair.isPresent() && userPair.get().getRight().equals(user.password)) {
+            request.getSession().setAttribute("user", userPair.get().getKey());
             return new ResponseEntity<UserMetadata>(userPair.get().getKey(), HttpStatus.OK);
         } else {
             return new ResponseEntity<UserMetadata>(HttpStatus.UNAUTHORIZED);
